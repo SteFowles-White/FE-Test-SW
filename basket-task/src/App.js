@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import AppData from './store/app-data';
 import BasketForm from './Components/basketForm'
 
+
 function App() {
+
 
   const userBasketData = useContext(AppData);
    console.log(userBasketData)
