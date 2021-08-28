@@ -35,6 +35,7 @@ const BasketForm = () => {
  
 
     const formDataHandler = (data) => {
+        console.log('data', data)
         let updatedArr = [];
         getTotal.map(result => {
         
@@ -44,7 +45,22 @@ const BasketForm = () => {
                 return updatedArr.push(result)
             }
         })
+        console.log(updatedArr)
         setGetTotal(updatedArr)
+    }
+    console.log(getTotal)
+
+    const clearBasketHandler = () => {
+        const result = appData.orderedProducts.map(result => {
+            return {
+                productId: result.productId,
+                productName: result.productName,
+                productQuantity: 0,
+                costPerProduct: 3.35,
+                totalCost: 0
+            }
+        })
+        setGetTotal(result);
     }
 
 
@@ -71,7 +87,7 @@ const BasketForm = () => {
         <div className="card card__top pt-2 pb-3 p-4 background--off-white">
         {/* assuming data will be sent to an API to update user account */}
           <form id="basketForm" action="" className="card-body pb-0 pt-0">
-          {appData.orderedProducts.map((result, key) => {
+          {getTotal.map((result, key) => {
 
                 if (Object.values(appData.orderedProducts).length - 1 > key) {
                 return <BasketInputField key={key} result={result} getTotal={formDataHandler} lastone="true" />;
@@ -89,7 +105,7 @@ const BasketForm = () => {
                 <p className="mb-0 pt-2 pb-2 card__total">$ {totalCost}</p>
             </div> 
             <div className="col-sm-7 card__totals__container">
-                <button type="button" className="pe-3 btn__clear">Clear</button>
+                <button type="button" onClick={clearBasketHandler} className="pe-3 btn__clear">Clear</button>
                 <button form="basketForm" type="submit" value="submit" className="btn__blue">Check Out  <FontAwesomeIcon icon={ faGreaterThan } /></button>
             </div>
         </div>

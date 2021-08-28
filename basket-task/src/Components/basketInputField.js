@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -6,7 +6,12 @@ const BasketInputField = (props) => {
     const [getTotal, setgetTotal] = useState(parseFloat(props.result.totalCost).toFixed(2))
     const [getQuantity, setgetQuantity] = useState(props.result.productQuantity)
     const isLastOne = (props.lastone === "true");
-     console.log(isLastOne)
+
+    useEffect(() => {
+      return () => {
+        setgetQuantity(props.result.productQuantity)
+      };
+    }, [props])
 
     const totalAmountHandler = (e) => {
         setgetQuantity(e.target.value);
@@ -14,10 +19,23 @@ const BasketInputField = (props) => {
         props.getTotal(
             {
                 productId: props.result.productId,
-                productName: "Mountain Dew",
+                productName: props.result.productName,
                 productQuantity: parseInt(e.target.value),
-                costPerProduct: props.result.costOfProducts,
+                costPerProduct: props.result.costPerProduct,
                 totalCost: parseFloat(e.target.value * props.result.costPerProduct).toFixed(2)
+            }
+        )
+    }
+
+    const clearProductHandler = () => {
+        console.log('working')
+        props.getTotal(
+            {
+                productId: props.result.productId,
+                productName: props.result.productName,
+                productQuantity: 0,
+                costPerProduct: props.result.costPerProduct,
+                totalCost: 0
             }
         )
     }
@@ -40,7 +58,7 @@ const BasketInputField = (props) => {
                         className="card__total_quantity text-center"
                         id={props.result.productId}
                         aria-describedby={props.result.productId}
-                        value={getQuantity}
+                        value={isNaN(getQuantity) ? 0 : getQuantity}
                         onChange={totalAmountHandler}
                     />
                 </div>
@@ -50,6 +68,7 @@ const BasketInputField = (props) => {
                         type="button"
                         aria-label="Remove items"
                         className="btn__cancel pe-sm-0"
+                        onClick={clearProductHandler}
                     >
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
