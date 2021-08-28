@@ -1,23 +1,20 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import AppData from "../store/app-data";
 
 const BasketInputField = (props) => {
+    const [getTotal, setgetTotal] = useState(parseFloat(props.result.totalCost).toFixed(2))
+    const [getQuantity, setgetQuantity] = useState(props.result.productQuantity)
 
-    console.log(props)
+    const totalAmountHandler = (e) => {
+        setgetQuantity(e.target.value);
+        setgetTotal(calculateTotalItemPriceHandler(e.target.value, props.result.costPerProduct))
+        props.getTotal(getTotal)
+        
+    }
 
   const calculateTotalItemPriceHandler = (numberOfProducts, costOfProducts) => {
-    let number = 0;
-    let cost = 0;
-
-    //I will add testing later
-    // console.log(typeof numberOfProducts === 'number')
-    // if (typeof numberOfProducts === 'number') {
-    //     number = numberOfProducts;
-    // }else if (typeof numberOfProducts === 'string'){
-
-    // }
     return parseFloat(numberOfProducts * costOfProducts).toFixed(2);
   }
 
@@ -33,11 +30,12 @@ const BasketInputField = (props) => {
                 className="card__total_quantity text-center"
                 id={props.result.productId}
                 aria-describedby={props.result.productId}
-                value={props.result.productQuantity}
+                value={getQuantity}
+                onChange={totalAmountHandler}
             />
         </div>
         <div className="col-sm-5 pe-0 ps-0 pt-2 pt-sm-0 d-flex align-items-center justify-content-sm-end justify-content-between">
-            <p className="pe-3 card__total_value">$ {calculateTotalItemPriceHandler(props.result.costPerProduct, props.result.productQuantity)}</p>
+            <p className="pe-3 card__total_value">$ {getTotal}</p>
             <button
                 type="button"
                 aria-label="Remove items"

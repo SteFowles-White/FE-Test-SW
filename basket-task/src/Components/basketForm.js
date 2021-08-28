@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState }from 'react';
 import BasketFormButton from './basketFormButton';
 import BasketInput from './basketInput';
 
 const BasketForm = () => {
+    const [getTotal, setGetTotal] = useState()
 
     return(
 

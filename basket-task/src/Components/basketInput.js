@@ -1,22 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AppData from "../store/app-data";
 import BasketInputField from "./basketInputField";
 
-const BasketInput = () => {
+const BasketInput = (props) => {
+  const [getTotalItem, setgetTotalItem] = useState(0);
   const userBasketData = useContext(AppData);
   const userOrders = userBasketData.appData.user.orderedProducts;
+
+  const getTotal = (value) => {
+      console.log(value)
+  }
 
   return (
     <React.Fragment>
       {Object.values(userOrders).map((result, key) => {
         if (Object.values(userOrders).length - 1 > key) {
-          return <BasketInputField result={result} lastone="false" />;
+          return <BasketInputField result={result} getTotal={getTotal} lastone="false" />;
         } else {
-          return <BasketInputField result={result} lastone="true" />;
+          return <BasketInputField result={result} getTotal={getTotal} lastone="true" />;
         }
       })}
-
-
 
       {/* 
 
