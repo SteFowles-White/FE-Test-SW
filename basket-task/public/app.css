@@ -1,0 +1,93 @@
+.background--grey { background-color:#e9e8e6; }
+.background--light-grey { background-color: #f8f9f7; }
+.background--off-white { background-color: #fdfdfc; }
+
+.body{ 
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Calibri';
+    color: #7d7a7a;
+    font-size: 1rem;
+}
+
+.fs-height { height: 100vh;}
+
+.card__top {
+    border-radius: 2px 2px 0px 0px;
+}
+.card__bottom {
+    border-radius: 0px 0px 2px 2px;
+    border-left: 1px solid rgba(0,0,0,.125);
+    border-right: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card__basket__container{
+    width: 370px;
+}
+.card__total_value{
+    display: inline-block;
+    margin: 0px;
+    color: #e38a5a;
+    font-weight: 700;
+}
+.card__total_quantity {
+    width: 25px;
+    height: 25px;
+    color: #7d7a7a 
+}
+
+/* this rule not working when focusing on the input element */
+.card__total_quantity:hover,
+.card__total_quantity:focus-visible,
+.card__total_quantity:focus,
+.card__total_quantity:active{
+    cursor: pointer;
+    border: #7dc1e3 solid 1px;
+    border-radius: 3px;
+    padding: 2px;
+    box-shadow: 3px 3px 13px #e9e8e6; 
+}
+
+.card__totals__container{
+    text-align: start;
+}
+.card__item{
+    border-bottom: dashed #7d7a7a 1px;
+}
+.card__item div label {
+    padding-top: .1rem;
+}
+.card__total{
+    padding: .3rem .4rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.btn__cancel,
+.btn__clear{
+    border: 0px;
+    background-color: transparent;
+    color: #7d7a7a;
+}
+.btn__clear{
+    display: inline-block;
+    margin: 0px;
+}
+.btn__blue{
+    background-color: #6fbbe1;
+    color: #fff;
+    border: 0px;
+    border-radius: 2px;
+    padding: .3rem .7rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .card__totals__container {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .card__totals__container button:nth-child(2) {
+        float: right;
+    }
+  }
