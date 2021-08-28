@@ -5,7 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const BasketInputField = (props) => {
     const [getTotal, setgetTotal] = useState(parseFloat(props.result.totalCost).toFixed(2))
     const [getQuantity, setgetQuantity] = useState(props.result.productQuantity)
-    const isLastOne = props.lastone
+    const isLastOne = (props.lastone === "true");
      console.log(isLastOne)
 
     const totalAmountHandler = (e) => {
@@ -30,7 +30,7 @@ const BasketInputField = (props) => {
   return (
       <React.Fragment>
           { props.lastone && 
-            <div className="row pt-3 pb-3 card__item">
+            <div className={`row pt-3 ${isLastOne ? "card__item pb-3" : "pb-1"}`}>
                 <div className="col-sm-7 justify-content-between d-flex align-items-center ps-0 pe-0">
                     <label htmlFor={props.result.productId} className="">
                         {props.result.productName}
