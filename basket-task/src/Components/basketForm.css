@@ -1,0 +1,53 @@
+
+.card__top {
+    border-radius: 2px 2px 0px 0px;
+}
+.card__bottom {
+    border-radius: 0px 0px 2px 2px;
+    border-left: 1px solid rgba(0,0,0,.125);
+    border-right: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card__basket__container{
+    width: 370px;
+}
+
+
+.card__totals__container{
+    text-align: start;
+}
+
+
+.card__total{
+    padding: .3rem .4rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.btn__clear{
+    border: 0px;
+    background-color: transparent;
+    color: #7d7a7a;
+}
+.btn__clear{
+    display: inline-block;
+    margin: 0px;
+}
+.btn__blue{
+    background-color: #6fbbe1;
+    color: #fff;
+    border: 0px;
+    border-radius: 2px;
+    padding: .3rem .7rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .card__totals__container {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .card__totals__container button:nth-child(2) {
+        float: right;
+    }
+  }

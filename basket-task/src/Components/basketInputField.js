@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import  "./basketInputField.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,15 +8,21 @@ const BasketInputField = (props) => {
     const [getQuantity, setgetQuantity] = useState(props.result.productQuantity)
     const isLastOne = (props.lastone === "true");
 
+    
     useEffect(() => {
       return () => {
+        //reset the quantity of products if the props passed in change
         setgetQuantity(props.result.productQuantity)
+        setgetTotal(parseFloat(props.result.totalCost).toFixed(2))
       };
     }, [props])
 
+    
+    //chnage quantity when input value changes, change total value and update the dataset that is used
     const totalAmountHandler = (e) => {
         setgetQuantity(e.target.value);
-        setgetTotal(calculateTotalItemPriceHandler(e.target.value, props.result.costPerProduct))
+        setgetTotal(calculateTotalItemPrice(e.target.value, props.result.costPerProduct))
+        //create and send new object based on new values via props
         props.getTotal(
             {
                 productId: props.result.productId,
@@ -26,9 +33,9 @@ const BasketInputField = (props) => {
             }
         )
     }
-
+    // clear product items data for only this product
     const clearProductHandler = () => {
-        console.log('working')
+        //create and send new object based on new values via props
         props.getTotal(
             {
                 productId: props.result.productId,
@@ -40,7 +47,8 @@ const BasketInputField = (props) => {
         )
     }
 
-    const calculateTotalItemPriceHandler = (numberOfProducts, costOfProducts) => {
+    //calcuate the total price of the products quant * price for specific product on list
+    const calculateTotalItemPrice = (numberOfProducts, costOfProducts) => {
         return parseFloat(numberOfProducts * costOfProducts).toFixed(2);
     }
 

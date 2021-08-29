@@ -1,0 +1,42 @@
+
+.card__total_value{
+    display: inline-block;
+    margin: 0px;
+    color: #e38a5a;
+    font-weight: 700;
+}
+.card__total_quantity {
+    width: 25px;
+    height: 25px;
+    color: #7d7a7a 
+}
+
+/* this rule not working when focusing on the input element */
+.card__total_quantity:hover,
+.card__total_quantity:focus-visible,
+.card__total_quantity:focus,
+.card__total_quantity:active{
+    cursor: pointer;
+    border: #7dc1e3 solid 1px;
+    border-radius: 3px;
+    padding: 2px;
+    box-shadow: 3px 3px 13px #e9e8e6; 
+}
+
+.card__item{
+    border-bottom: dashed #7d7a7a 1px;
+}
+.card__item div label {
+    padding-top: .1rem;
+}
+.card__total{
+    padding: .3rem .4rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.btn__cancel{
+    border: 0px;
+    background-color: transparent;
+    color: #7d7a7a;
+}
