@@ -37,7 +37,6 @@ const BasketForm = () => {
   // function passed into basketInputField - takes the data and then resets the data used
   const formDataHandler = (data) => {
     let updatedArr = [];
-    console.log(data)
 
     if(typeof data === 'object'){
         getData.map((result) => {
@@ -86,7 +85,8 @@ const BasketForm = () => {
   return (
     <section className="card__basket__container">
       <div className="card card__top pt-2 pb-3 p-4 background--off-white">
-        {/* assuming data will be sent to an API to update user account */}
+        {/* assuming data will be sent to an API to update user account order information on checkout button been pressed
+        however information could be send/gathered from a localStorage/sessionStorage as well*/}
         <form id="basketForm" action="" className="card-body pb-0 pt-0">
         {/* need to check the last item in basket is false for a dynamic class */}
           {getData.map((result, key) => {
